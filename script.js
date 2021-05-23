@@ -79,5 +79,8 @@ function addCode() {
         <option value="5">5</option>
         <option value="6">6</option>
     </select>
-</div>`;
+    </div>`;
+    GPA=0;
+    totCreds=[];
+    totGrades=[];
 }
