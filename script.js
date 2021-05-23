@@ -23,21 +23,27 @@ var GPA=0;
 var totCreds=[];
 var totGrades=[];
 
+function roundDown(n,p) {
+    var power=10**p;
+    n*=power;
+    return Math.floor(n)/power
+}
+
 function getLetGrade(elem,count) {
     var letGrade = parseFloat(document.getElementById('letter'+count).value);
     var credits = parseInt(document.getElementById('cred'+count).value);
-    console.log(letGrade, credits, totCreds, GPA);
+    //console.log(letGrade, credits, totCreds, GPA);
     totCreds[elem.parentNode.id]=credits;
     totGrades[elem.parentNode.id]=letGrade;
 
     GPA = getGPA(totGrades,totCreds);
     GPA = parseFloat(GPA);
-    console.log(letGrade, credits, totCreds, totGrades, GPA);
+    //console.log(letGrade, credits, totCreds, totGrades, GPA);
     if (isNaN(GPA)){
         GPA=0;
     }
-    document.getElementById('added').innerHTML = 'GPA: ' + GPA.toFixed(2);
-    console.log(elem.parentNode.id);
+    document.getElementById('added').innerHTML = 'GPA: ' + roundDown(GPA,2);
+    //console.log(elem.parentNode.id);
 }
 
 function getGPA(totGrades,totCreds){
@@ -54,10 +60,10 @@ function getGPA(totGrades,totCreds){
 var divCount = 0;
 
 function addCode() {
-    console.log(divCount)
+    //console.log(divCount)
     divCount += 1
     document.getElementById('calculator').innerHTML += `<div id="` + divCount + `">
-    <textarea rows="1" placeholder="Course Name"></textarea>
+    <input placeholder="Course Name">
     <select name="" id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `)">
         <option value="0">Letter Grade</option>
         <option value="4.3">A+</option>
@@ -94,9 +100,16 @@ function getCumulativeGPA(){
     for (var i=0;i<totCreds.length;i++) {
         credits+=totCreds[i];
     }
-    var newGPA= (prevGPA*prevCreds+getGPA(totGrades,totCreds)*credits)/(prevCreds+credits);
+    var GPA=getGPA(totGrades,totCreds);
+    if (isNaN(GPA)){
+        GPA=0;
+    }
+    //console.log(prevGPA,prevCreds,GPA,credits,prevCreds,credits);
+    var newGPA= (prevGPA*prevCreds+GPA*credits)/(prevCreds+credits);
+    //console.log(newGPA);
     if (isNaN(newGPA)){
         newGPA=0;
     }
-    document.getElementById("cumulativegpa").innerHTML="Cumulative GPA: "+newGPA.toFixed(2);
+    //console.log(prevGPA,prevCreds,newGPA,credits);
+    document.getElementById("cumulativegpa").innerHTML="Cumulative GPA: "+roundDown(newGPA,2);
 }

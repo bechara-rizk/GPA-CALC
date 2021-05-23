@@ -12,7 +12,7 @@
     <h1>GPA Calculator</h1>
     <div id="calculator">
         <div id="0">
-            <textarea rows="1" placeholder="Course Name"></textarea>
+            <input placeholder="Course Name">
             <select name="" id="letter0" class="list" onchange="getLetGrade(this,0)">
                 <option value="0">Letter Grade</option>
                 <option value="4.3">A+</option>
@@ -45,8 +45,8 @@
         <h2 id="Cumulative">
             Cumulative GPA
         </h2>
-        <textarea rows="1" id="prevgpa" placeholder="Previous GPA" oninput="getCumulativeGPA()">0</textarea>
-        <textarea rows="1" id="prevcreds" placeholder="Number Of Credits" oninput="getCumulativeGPA()">0</textarea>
+        <input id="prevgpa" placeholder="Previous GPA" oninput="getCumulativeGPA()" type="number" value="0"></input>
+        <input id="prevcreds" placeholder="Number Of Credits" oninput="getCumulativeGPA()" type="number" value="0"></input>
         <h4 id="cumulativegpa">Cumulative GPA:</h4>
     </div>
 
