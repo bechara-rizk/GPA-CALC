@@ -31,10 +31,12 @@ function getLetGrade(elem,count) {
     totGrades[elem.parentNode.id]=letGrade;
 
     GPA = getGPA(totGrades,totCreds);
-    GPA = parseFloat(GPA.toFixed(2));
+    GPA = parseFloat(GPA);
     console.log(letGrade, credits, totCreds, totGrades, GPA);
-
-    document.getElementById('added').innerHTML = 'GPA: ' + GPA;
+    if (isNaN(GPA)){
+        GPA=0;
+    }
+    document.getElementById('added').innerHTML = 'GPA: ' + GPA.toFixed(2);
     console.log(elem.parentNode.id);
 }
 
@@ -55,7 +57,7 @@ function addCode() {
     console.log(divCount)
     divCount += 1
     document.getElementById('calculator').innerHTML += `<div id="` + divCount + `">
-    <textarea>Course Name</textarea>
+    <textarea rows="1" placeholder="Course Name"></textarea>
     <select name="" id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `)">
         <option value="0">Letter Grade</option>
         <option value="4.3">A+</option>
@@ -83,4 +85,18 @@ function addCode() {
     GPA=0;
     totCreds=[];
     totGrades=[];
+}
+
+function getCumulativeGPA(){
+    var prevGPA = parseFloat(document.getElementById("prevgpa").value);
+    var prevCreds = parseFloat(document.getElementById("prevcreds").value);
+    var credits=0;
+    for (var i=0;i<totCreds.length;i++) {
+        credits+=totCreds[i];
+    }
+    var newGPA= (prevGPA*prevCreds+getGPA(totGrades,totCreds)*credits)/(prevCreds+credits);
+    if (isNaN(newGPA)){
+        newGPA=0;
+    }
+    document.getElementById("cumulativegpa").innerHTML="Cumulative GPA: "+newGPA.toFixed(2);
 }
