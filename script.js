@@ -70,7 +70,8 @@ var divCount = 0;
 function addCode() {
     //console.log(divCount)
     divCount ++;
-    document.getElementById('calculator').innerHTML += `<div id="` + divCount + `">
+    //document.getElementById('calculator').innerHTML += 
+    var toAdd= `<div id="` + divCount + `">
     <input placeholder="Course Name">
     <select name="" id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
         <option value="0">Letter Grade</option>
@@ -97,7 +98,8 @@ function addCode() {
         <option value="5">5</option>
         <option value="6">6</option>
     </select>
-</div>`
+</div>`;
+    document.getElementById("calculator").insertAdjacentHTML('beforeend',toAdd);
     GPA = 0;
     totCreds.push(0);
     totGrades.push(0);
