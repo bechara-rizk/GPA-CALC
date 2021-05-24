@@ -5,6 +5,7 @@
     <title>GPA Calculator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -46,12 +47,19 @@
         <h2 id="Cumulative">
             Cumulative GPA
         </h2>
-        <input id="prevgpa" placeholder="Previous GPA" oninput="getCumulativeGPA()" type="number" value="0"></input>
-        <input id="prevcreds" placeholder="Number Of Credits" oninput="getCumulativeGPA()" type="number" value="0"></input>
+        <div class="previousInfo previousgpa">
+            <p>Previous GPA</p>
+            <input id="prevgpa" placeholder="Previous GPA" oninput="getCumulativeGPA()" type="number" value="0"></input>
+        </div>
+        <div class="previousInfo previouscredits">
+            <p>Previous Credits</p>
+            <input id="prevcreds" placeholder="Number Of Credits" oninput="getCumulativeGPA()" type="number" value="0"></input>
+        </div>
         <h4 id="cumulativegpa">Cumulative GPA:</h4>
     </div>
 
-    <script src='script.js'></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src='js/script.js'></script>
 </body>
 
 </html>
