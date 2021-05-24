@@ -19,42 +19,45 @@ function getLetGrade(elem) {
     console.log(elem.parentNode.id);
 } */
 
-var GPA=0;
-var totCreds=[];
-var totGrades=[];
+var GPA = 0;
+var totCreds = [0];
+var totGrades = [0];
 
-function roundDown(n,p) {
-    var power=10**p;
-    n*=power;
-    return Math.floor(n)/power
+function roundDown(n, p) {
+    var power = 10 ** p;
+    n *= power;
+    return Math.floor(n) / power
 }
 
-function getLetGrade(elem,count) {
-    var letGrade = parseFloat(document.getElementById('letter'+count).value);
-    var credits = parseInt(document.getElementById('cred'+count).value);
+function getLetGrade(elem, count) {
+    var letGrade = parseFloat(document.getElementById('letter' + count).value);
+    var credits = parseInt(document.getElementById('cred' + count).value);
     //console.log(letGrade, credits, totCreds, GPA);
-    totCreds[elem.parentNode.id]=credits;
-    totGrades[elem.parentNode.id]=letGrade;
+    totCreds[elem.parentNode.id] = credits;
+    totGrades[elem.parentNode.id] = letGrade;
 
-    GPA = getGPA(totGrades,totCreds);
+    GPA = getGPA(totGrades, totCreds);
     GPA = parseFloat(GPA);
-    //console.log(letGrade, credits, totCreds, totGrades, GPA);
-    if (isNaN(GPA)){
-        GPA=0;
+    console.log(letGrade, credits, totGrades, totCreds, GPA);
+    if (isNaN(GPA)) {
+        GPA = 0;
     }
-    document.getElementById('added').innerHTML = 'GPA: ' + roundDown(GPA,2);
+    document.getElementById('added').innerHTML = 'GPA: ' + roundDown(GPA, 2);
     //console.log(elem.parentNode.id);
+    //console.log('getletgrade');
 }
 
-function getGPA(totGrades,totCreds){
-    var gradesAdd=0;
-    var credsAdd=0;
-    len=totGrades.length;
-    for (var i=0;i<len;i++){
-        gradesAdd+=totGrades[i]*totCreds[i];
-        credsAdd+=totCreds[i];
+function getGPA(totGrades, totCreds) {
+    var gradesAdd = 0;
+    var credsAdd = 0;
+    len = totGrades.length;
+    for (var i = 0; i < len; i++) {
+        gradesAdd += totGrades[i] * totCreds[i];
+        credsAdd += totCreds[i];
     }
-    return gradesAdd/credsAdd;
+    //console.log('getgpa');
+    console.log(gradesAdd,credsAdd)
+    return gradesAdd / credsAdd;
 }
 
 var divCount = 0;
@@ -77,9 +80,11 @@ function addCode() {
         <option value="1.7">C-</option>
         <option value="1.3">D+</option>
         <option value="1">D</option>
+        <option value="0">F</option>
     </select>
     <select name="" id="cred` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
         <option value="0">Credits</option>
+        <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -87,29 +92,31 @@ function addCode() {
         <option value="5">5</option>
         <option value="6">6</option>
     </select>
-    </div>`;
-    GPA=0;
-    totCreds=[];
-    totGrades=[];
+</div>`
+    GPA = 0;
+    totCreds.push(0);
+    totGrades.push(0);
+    //console.log('addcode');
 }
 
-function getCumulativeGPA(){
+function getCumulativeGPA() {
     var prevGPA = parseFloat(document.getElementById("prevgpa").value);
     var prevCreds = parseFloat(document.getElementById("prevcreds").value);
-    var credits=0;
-    for (var i=0;i<totCreds.length;i++) {
-        credits+=totCreds[i];
+    var credits = 0;
+    for (var i = 0; i < totCreds.length; i++) {
+        credits += totCreds[i];
     }
-    var GPA=getGPA(totGrades,totCreds);
-    if (isNaN(GPA)){
-        GPA=0;
+    var GPA = getGPA(totGrades, totCreds);
+    if (isNaN(GPA)) {
+        GPA = 0;
     }
     //console.log(prevGPA,prevCreds,GPA,credits,prevCreds,credits);
-    var newGPA= (prevGPA*prevCreds+GPA*credits)/(prevCreds+credits);
+    var newGPA = (prevGPA * prevCreds + GPA * credits) / (prevCreds + credits);
     //console.log(newGPA);
-    if (isNaN(newGPA)){
-        newGPA=0;
+    if (isNaN(newGPA)) {
+        newGPA = 0;
     }
     //console.log(prevGPA,prevCreds,newGPA,credits);
-    document.getElementById("cumulativegpa").innerHTML="Cumulative GPA: "+roundDown(newGPA,2);
+    document.getElementById("cumulativegpa").innerHTML = "Cumulative GPA: " + roundDown(newGPA, 2);
+    //console.log('getcumulgpa');
 }
