@@ -62,6 +62,11 @@ function getGPA(totGrades, totCreds) {
 
 var divCount = 0;
 
+/* function addCode2(){
+    divCount++;
+    document.getElementById(1).style.display='inline';
+} */
+
 function addCode() {
     //console.log(divCount)
     divCount ++;
