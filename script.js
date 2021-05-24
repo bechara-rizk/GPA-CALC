@@ -64,7 +64,7 @@ var divCount = 0;
 
 function addCode() {
     //console.log(divCount)
-    divCount += 1
+    divCount ++;
     document.getElementById('calculator').innerHTML += `<div id="` + divCount + `">
     <input placeholder="Course Name">
     <select name="" id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
