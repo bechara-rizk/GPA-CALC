@@ -13,34 +13,38 @@
 <body>
     <h1 class="title">GPA Calculator</h1>
     <div id="calculator">
-        <div class="course" id="0">
-            <input class="list courseInput" type="text" placeholder="Course Name">
-            <select id="letter0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
-                <option value="0">Letter Grade</option>
-                <option value="4.3">A+</option>
-                <option value="4">A</option>
-                <option value="3.7">A-</option>
-                <option value="3.3">B+</option>
-                <option value="3">B</option>
-                <option value="2.7">B-</option>
-                <option value="2.3">C+</option>
-                <option value="2">C</option>
-                <option value="1.7">C-</option>
-                <option value="1.3">D+</option>
-                <option value="1">D</option>
-                <option value="0">F</option>
-            </select>
-            <select id="cred0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
-                <option value="0">Credits</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
+        <ul>
+            <li>
+                <div class="course" id="0">
+                    <input class="list courseInput" type="text" placeholder="Course Name">
+                    <select id="letter0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
+                        <option value="0">Letter Grade</option>
+                        <option value="4.3">A+</option>
+                        <option value="4">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="2">C</option>
+                        <option value="1.7">C-</option>
+                        <option value="1.3">D+</option>
+                        <option value="1">D</option>
+                        <option value="0">F</option>
+                    </select>
+                    <select id="cred0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
+                        <option value="0">Credits</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
     </div>
     <button onclick="addCode()" class="btn btn-primary">Add Course</button>
     <h3 class="title2" id='added'>GPA :</h3>
