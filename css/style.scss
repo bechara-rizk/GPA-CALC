@@ -1,4 +1,44 @@
 body{
     background-color: gray;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 2%;
+    color: #fff;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.title2{
+    margin-top: 20px;
+}
+
+.course{
+    margin-bottom: 15px;
+}
+
+.list{
+    margin-right: 10px;
+}
+
+.courseInput{
+    width: 110px;
+}
+
+.infoInput{
+    width: 110px;
+}
+
+.inputdiv{
+    margin-bottom: 10px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
 }

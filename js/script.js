@@ -38,11 +38,11 @@ function getLetGrade(elem, count) {
 
     GPA = getGPA(totGrades, totCreds);
     GPA = parseFloat(GPA);
-    console.log(letGrade, credits, totGrades, totCreds, GPA);
+    //console.log(letGrade, credits, totGrades, totCreds, GPA);
     if (isNaN(GPA)) {
         GPA = 0;
     }
-    document.getElementById('added').innerHTML = 'GPA: ' + roundDown(GPA, 2);
+    document.getElementById('added').innerHTML = 'GPA : ' + roundDown(GPA, 2);
     //console.log(elem.parentNode.id);
     //console.log('getletgrade');
 }
@@ -56,7 +56,7 @@ function getGPA(totGrades, totCreds) {
         credsAdd += totCreds[i];
     }
     //console.log('getgpa');
-    console.log(gradesAdd,credsAdd)
+    //console.log(gradesAdd,credsAdd)
     return gradesAdd / credsAdd;
 }
 
@@ -71,9 +71,9 @@ function addCode() {
     //console.log(divCount)
     divCount ++;
     //document.getElementById('calculator').innerHTML += 
-    var toAdd= `<div id="` + divCount + `">
-    <input placeholder="Course Name">
-    <select name="" id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
+    var toAdd= `<div class="course" id="` + divCount + `">
+    <input class="list courseInput" type="text" placeholder="Course Name">
+    <select id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
         <option value="0">Letter Grade</option>
         <option value="4.3">A+</option>
         <option value="4">A</option>
@@ -88,7 +88,7 @@ function addCode() {
         <option value="1">D</option>
         <option value="0">F</option>
     </select>
-    <select name="" id="cred` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
+    <select id="cred` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
         <option value="0">Credits</option>
         <option value="0">0</option>
         <option value="1">1</option>
@@ -100,7 +100,7 @@ function addCode() {
     </select>
 </div>`;
     document.getElementById("calculator").insertAdjacentHTML('beforeend',toAdd);
-    GPA = 0;
+    //GPA = 0;
     totCreds.push(0);
     totGrades.push(0);
     //console.log('addcode');
