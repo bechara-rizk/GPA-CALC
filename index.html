@@ -5,15 +5,17 @@
     <title>GPA Calculator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>GPA Calculator</h1>
+    <h1 class="title">GPA Calculator</h1>
     <div id="calculator">
-        <div id="0">
-            <input placeholder="Course Name">
-            <select name="" id="letter0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
+        <div class="course" id="0">
+            <input class="list courseInput" type="text" placeholder="Course Name">
+            <select id="letter0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
                 <option value="0">Letter Grade</option>
                 <option value="4.3">A+</option>
                 <option value="4">A</option>
@@ -28,7 +30,7 @@
                 <option value="1">D</option>
                 <option value="0">F</option>
             </select>
-            <select name="" id="cred0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
+            <select id="cred0" class="list" onchange="getLetGrade(this,0),getCumulativeGPA()">
                 <option value="0">Credits</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -40,18 +42,31 @@
             </select>
         </div>
     </div>
-    <button onclick="addCode()">Add Course</button>
-    <h4 id='added'>GPA:</h4>
+    <button onclick="addCode()" class="btn btn-primary">Add Course</button>
+    <h3 class="title2" id='added'>GPA :</h3>
     <div id="previousgpa">
-        <h2 id="Cumulative">
-            Cumulative GPA
-        </h2>
-        <input id="prevgpa" placeholder="Previous GPA" oninput="getCumulativeGPA()" type="number" value="0"></input>
-        <input id="prevcreds" placeholder="Number Of Credits" oninput="getCumulativeGPA()" type="number" value="0"></input>
-        <h4 id="cumulativegpa">Cumulative GPA:</h4>
+        <h2 id="title2">Cumulative GPA</h2>
+        <div class="previousInfo previousgpa">
+            <div class="inputdiv">
+                <label for="gpa">Previous GPA:</label>
+                <input class="infoInput" id="prevgpa" oninput="getCumulativeGPA()" type="number" value="0" min="0" max="4.3"></input>
+            </div>
+            <div class="inputdiv">
+                <label for="credits">Previous Credits:</label>
+                <input class="infoInput" id="prevcreds" oninput="getCumulativeGPA()" type="number" value="0" min='0'></input>
+            </div>
+        </div>
+        <h3 id="cumulativegpa" class="">Cumulative GPA :</h3>
     </div>
 
-    <script src='script.js'></script>
+    <div class="footer">
+        Made by <a href="https://github.com/bechara-rizk" target="_blank" class="anchor">Bechara Rizk</a>
+    </div>
+
+
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src='js/script.js'></script>
 </body>
 
 </html>
