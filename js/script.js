@@ -32,6 +32,9 @@ function roundDown(n, p) {
 function getLetGrade(elem, count) {
     var letGrade = parseFloat(document.getElementById('letter' + count).value);
     var credits = parseInt(document.getElementById('cred' + count).value);
+    if (isNaN(credits)){
+        credits=0;
+    }
     //console.log(letGrade, credits, totCreds, GPA);
     totCreds[elem.parentNode.id] = credits;
     totGrades[elem.parentNode.id] = letGrade;
@@ -42,6 +45,7 @@ function getLetGrade(elem, count) {
     if (isNaN(GPA)) {
         GPA = 0;
     }
+    //console.log(GPA);
     document.getElementById('added').innerHTML = 'GPA : ' + roundDown(GPA, 2);
     //console.log(elem.parentNode.id);
     //console.log('getletgrade');
@@ -71,7 +75,7 @@ function addCode() {
     //console.log(divCount)
     divCount ++;
     //document.getElementById('calculator').innerHTML += 
-    var toAdd= `<ul>
+    var toAddOld= `<ul>
     <li><div class="course" id="` + divCount + `">
     <input class="list courseInput" type="text" placeholder="Course Name">
     <select id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
@@ -99,6 +103,27 @@ function addCode() {
         <option value="5">5</option>
         <option value="6">6</option>
     </select>
+</div></li>
+</ul>`;
+    var toAdd= `<ul>
+    <li><div class="course" id="` + divCount + `">
+    <input class="list courseInput" type="text" placeholder="Course Name">
+    <select id="letter` + divCount + `" class="list" onchange="getLetGrade(this,` + divCount + `),getCumulativeGPA()">
+        <option value="0">Letter Grade</option>
+        <option value="4.3">A+</option>
+        <option value="4">A</option>
+        <option value="3.7">A-</option>
+        <option value="3.3">B+</option>
+        <option value="3">B</option>
+        <option value="2.7">B-</option>
+        <option value="2.3">C+</option>
+        <option value="2">C</option>
+        <option value="1.7">C-</option>
+        <option value="1.3">D+</option>
+        <option value="1">D</option>
+        <option value="0">F</option>
+    </select>
+    <input placeholder="Credits" class="infoInput1" id="cred`+divCount+`" oninput="getLetGrade(this,`+divCount+`),getCumulativeGPA()" type="number" min='0'></input>
 </div></li>
 </ul>`;
     document.getElementById("calculator").insertAdjacentHTML('beforeend',toAdd);
