@@ -18,7 +18,6 @@ function getLetGrade(elem) {
     document.getElementById('added').innerHTML = 'GPA: ' + GPA;
     console.log(elem.parentNode.id);
 } */
-
 var GPA = 0;
 var totCreds = [0];
 var totGrades = [0];
@@ -26,6 +25,11 @@ var totGrades = [0];
 function roundDown(n, p) {
     var power = 10 ** p;
     n *= power;
+    var stringed=n.toString();
+    var dot=stringed.indexOf(".");
+    if (stringed[dot+1]>=7){
+        return Math.ceil(n) / power
+    }
     return Math.floor(n) / power
 }
 
