@@ -1,8 +1,7 @@
 body {
   background-color: gray;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 2%;
-  color: #fff;
+  color: white;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -41,13 +40,15 @@ body {
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  /* position: fixed;
+    left: 0;
+    bottom: 0; */
   background-color: black;
   color: white;
   text-align: center;
+  padding: 5px;
+  border: 2px solid white;
+  border-radius: 5px;
 }
 
 ul {
