@@ -31,6 +31,17 @@ body{
     width: 60px;
 }
 
+input{
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: none;
+    //border-color: #0E6DFD;
+    //box-shadow: 0 0 10px #0E6DFD;
+  }
+
 .infoInput1{
     width: 70px;
 }
@@ -54,4 +65,8 @@ body{
 
 ul{
     padding-left: 1rem;
+}
+
+.previousgpa{
+    text-align:center;
 }

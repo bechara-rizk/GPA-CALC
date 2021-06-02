@@ -36,6 +36,18 @@ function roundDown(n, p) {
 function getLetGrade(elem, count) {
     var letGrade = parseFloat(document.getElementById('letter' + count).value);
     var credits = parseInt(document.getElementById('cred' + count).value);
+    if (credits<0){
+        document.getElementById("cred"+elem.parentNode.id).style.borderColor="red";
+        document.getElementById("cred"+elem.parentNode.id).style.boxShadow="0 0 10px red";
+        //console.log(elem.parentNode.id);
+        credits=0;
+        alert("Credits must be greater than or equal to 0");
+    }
+    else if (credits>=0){
+        document.getElementById("cred"+elem.parentNode.id).style.borderColor="white";
+        document.getElementById("cred"+elem.parentNode.id).style.boxShadow="0 0 0 white";
+        //console.log(elem.parentNode.id);
+    }
     if (isNaN(credits)){
         credits=0;
     }
@@ -140,6 +152,37 @@ function addCode() {
 function getCumulativeGPA() {
     var prevGPA = parseFloat(document.getElementById("prevgpa").value);
     var prevCreds = parseFloat(document.getElementById("prevcreds").value);
+    if (prevGPA<0){
+        document.getElementById("prevgpa").style.borderColor="red";
+        document.getElementById("prevgpa").style.boxShadow="0 0 10px red";
+        //console.log(elem.parentNode.id);
+        prevGPA=0;
+        alert("GPA must be between 0 and 4.3 (included)");
+    }
+    else if(prevGPA>4.3){
+        document.getElementById("prevgpa").style.borderColor="red";
+        document.getElementById("prevgpa").style.boxShadow="0 0 10px red";
+        //console.log(elem.parentNode.id);
+        prevGPA=4.3;
+        alert("GPA must be between 0 and 4.3 (included)");
+    }
+    else{
+        document.getElementById("prevgpa").style.borderColor="white";
+        document.getElementById("prevgpa").style.boxShadow="0 0 0 white";
+        //console.log(elem.parentNode.id);
+    }
+    if (prevCreds<0){
+        document.getElementById("prevcreds").style.borderColor="red";
+        document.getElementById("prevcreds").style.boxShadow="0 0 10px red";
+        //console.log(elem.parentNode.id);
+        prevCreds=0;
+        alert("Credits must be greater than or equal to 0");
+    }
+    else if (prevCreds>=0){
+        document.getElementById("prevcreds").style.borderColor="white";
+        document.getElementById("prevcreds").style.boxShadow="0 0 0 white";
+        //console.log(elem.parentNode.id);
+    }
     var credits = 0;
     for (var i = 0; i < totCreds.length; i++) {
         credits += totCreds[i];

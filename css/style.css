@@ -31,6 +31,15 @@ body {
   width: 60px;
 }
 
+input {
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
 .infoInput1 {
   width: 70px;
 }
@@ -53,5 +62,9 @@ body {
 
 ul {
   padding-left: 1rem;
+}
+
+.previousgpa {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
