@@ -9,19 +9,19 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="loadData()">
     <div class="header">
         <h1 class="title">GPA Calculator</h1>
     </div>
     
     <div id="calculator" style="width: 70%;max-width: 1000px; display: flex; white-space: nowrap; overflow-x: scroll;">
         <div class="semesterDivider" id="0">
-            <input type="text" placeholder="Semester" class="semesterName">
+            <input type="text" placeholder="Semester" class="semesterName" id="sem0">
             <div id="semCourse0">
                 <ul>
                     <li>
                         <div class="course" id="0">
-                            <input class="list courseInput" type="text" placeholder="Course Name">
+                            <input class="list courseInput" type="text" placeholder="Course Name" id="course0 sem0">
                             <select id="letter0 sem0" class="list" onchange="computeGPA()">
                                 <option value="0">Letter Grade</option>
                                 <option value="4.3">A+</option>
@@ -66,6 +66,10 @@
             </div>
         </div> -->
         <h3 id="cumulativegpa" class="">Cumulative GPA :</h3>
+    </div>
+    <div class="" style="margin-bottom: 10px;">
+        <button onclick="saveData()" class="btn btn-primary custom-buttons">Save state</button>
+        <button onclick="delData()" class="btn btn-primary custom-buttons">Clear state</button>
     </div>
 
     <div class="footer">

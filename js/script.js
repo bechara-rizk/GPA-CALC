@@ -2,6 +2,9 @@ var divCount = [0];
 var semCount = 0;
 
 function roundDown(n, p) {
+    if (n.toString().charAt(4)=='9'){
+        return Math.ceil(n * 100) / 100;
+    }
     var power = 10 ** p;
     n *= power;
     return Math.floor(n) / power
@@ -13,7 +16,7 @@ function addCode(semCount) {
     //document.getElementById('calculator').innerHTML += 
     var toAdd= `<ul>
     <li><div class="course" id="` + divCount[semCount] + `">
-    <input class="list courseInput" type="text" placeholder="Course Name">
+    <input class="list courseInput" type="text" placeholder="Course Name" id="course` + divCount[semCount] + ` sem`+ semCount +`">
     <select id="letter` + divCount[semCount] + ` sem`+ semCount +`" class="list" onchange="computeGPA()">
         <option value="0">Letter Grade</option>
         <option value="4.3">A+</option>
@@ -40,12 +43,12 @@ function addSem() {
     semCount++;
     divCount.push(0);
     var toAdd = `<div class="semesterDivider" id="` + semCount + `">
-            <input type="text" placeholder="Semester" class="semesterName">
+            <input type="text" placeholder="Semester" class="semesterName" id="sem`+ semCount +`">
             <div id="semCourse` + semCount + `">
                 <ul>
                     <li>
                         <div class="course" id="0">
-                            <input class="list courseInput" type="text" placeholder="Course Name">
+                            <input class="list courseInput" type="text" placeholder="Course Name" id="course0 sem`+ semCount +`">
                             <select id="letter0 sem`+ semCount +`" class="list" onchange="computeGPA()">
                                 <option value="0">Letter Grade</option>
                                 <option value="4.3">A+</option>
@@ -113,4 +116,55 @@ function computeGPA() {
         gpa = 0;
     }
     document.getElementById('cumulativegpa').innerHTML = 'Cumulative GPA : ' + gpa;
+}
+
+// make a function that will save divCount, semCount, and the values of the inputs for letter grades and credits
+function saveData(){
+    var data = {
+        divCount: divCount,
+        semCount: semCount
+    }
+    for (var i = 0; i <= semCount; i++) {
+        for (var j = 0; j <= divCount[i]; j++) {
+            data['letter' + j+' sem'+i] = document.getElementById('letter' + j+' sem'+i).value;
+            data['cred' + j+' sem'+i] = document.getElementById('cred' + j+' sem'+i).value;
+            data['course' + j+' sem'+i] = document.getElementById('course' + j+' sem'+i).value;
+        }
+        data['sem' + i] = document.getElementById('sem' + i).value;
+    }
+    localStorage.setItem('data', JSON.stringify(data));
+}
+
+// make a function that will load the data from localStorage
+function loadData(){
+    var data = JSON.parse(localStorage.getItem('data'));
+    if (data){
+        if (data.semCount>0){
+            for (var i = 0; i < data.semCount; i++){
+                addSem();
+            }
+        }
+        semCount = data.semCount;
+        for (var i = 0; i <= semCount; i++) {
+            if (data.divCount[i]>0){
+                for (var j = 0; j < data.divCount[i]; j++){
+                    addCode(i);                }
+            }
+        }
+        divCount = data.divCount;
+
+        for (var i = 0; i <= semCount; i++) {
+            for (var j = 0; j <= divCount[i]; j++) {
+                document.getElementById('letter' + j+' sem'+i).value = data['letter' + j+' sem'+i];
+                document.getElementById('cred' + j+' sem'+i).value = data['cred' + j+' sem'+i];
+                document.getElementById('course' + j+' sem'+i).value = data['course' + j+' sem'+i];
+            }
+            document.getElementById('sem' + i).value = data['sem' + i];
+        }
+        computeGPA();
+    }
+}
+
+function delData(){
+    localStorage.removeItem('data');
 }
